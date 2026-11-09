@@ -1,0 +1,65 @@
+name: Build and publish dashboard
+
+on:
+  push:
+    branches: [dashboard]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      # dashboard.py and metrics.py import nothing outside the standard
+      # library, so there is no dependency step here on purpose.
+      - name: Rebuild both dashboards from the committed CSVs
+        run: python dashboard.py --lang all
+
+      - name: Assemble the site
+        run: |
+          mkdir -p _site
+          cp docs/dashboard.html _site/index.html
+          cp docs/dashboard-tr.html _site/tr.html
+          printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt
+          touch _site/.nojekyll
+
+      # Everything in _site becomes publicly readable. Fail the build rather
+      # than publish a file nobody put here on purpose.
+      - name: Refuse to publish unexpected files
+        run: |
+          unexpected=$(cd _site && find . -type f \
+            ! -name index.html ! -name tr.html ! -name robots.txt ! -name .nojekyll)
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected files in _site:"
+            echo "$unexpected"
+            exit 1
+          fi
+          ls -la _site
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
