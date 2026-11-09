@@ -1,0 +1,16 @@
+2026-11-04T08:00:11Z RUN start org=piaddys days=30 cutoff=2026-10-05T08:00:11Z repos=ddys-task-assignment
+2026-11-04T08:00:17Z repo=ddys-task-assignment prs=14 api_calls=45 reused=0 elapsed=6.3s ratelimit_remaining=4908
+2026-11-04T08:00:17Z RUN end api_calls_this_run=45
+2026-11-04T08:04:03Z RUN start org=piaddys days=30 cutoff=2026-10-05T08:00:11Z repos=ddys-portal,ddys-application,ddys-bpmn-engine,application-model,ddys-notification,ddys-report,definition-model,ddys-definition,notification-model,ddys-task-assignment
+2026-11-04T08:04:51Z repo=ddys-portal prs=160 api_calls=489 reused=0 elapsed=48.1s ratelimit_remaining=4419
+2026-11-04T08:05:17Z repo=ddys-application prs=80 api_calls=247 reused=0 elapsed=26.4s ratelimit_remaining=4172
+2026-11-04T08:05:28Z repo=ddys-bpmn-engine prs=32 api_calls=99 reused=0 elapsed=11.3s ratelimit_remaining=4072
+2026-11-04T08:05:36Z repo=application-model prs=21 api_calls=66 reused=0 elapsed=7.8s ratelimit_remaining=4006
+2026-11-04T08:05:40Z repo=ddys-notification prs=9 api_calls=30 reused=0 elapsed=3.9s ratelimit_remaining=3976
+2026-11-04T08:05:50Z repo=ddys-report prs=29 api_calls=90 reused=0 elapsed=9.8s ratelimit_remaining=3885
+2026-11-04T08:06:03Z repo=definition-model prs=39 api_calls=120 reused=0 elapsed=13.3s ratelimit_remaining=3765
+2026-11-04T08:06:16Z repo=ddys-definition prs=38 api_calls=117 reused=0 elapsed=13.2s ratelimit_remaining=3648
+2026-11-04T08:06:20Z repo=notification-model prs=7 api_calls=24 reused=0 elapsed=3.4s ratelimit_remaining=3624
+2026-11-04T08:06:20Z repo=ddys-task-assignment SKIP (checkpoint exists)
+2026-11-04T08:06:20Z RUN end api_calls_this_run=1282
+2026-11-04T08:27:12Z teams=11 members=52 api_calls=12 reused=0 ratelimit_remaining=3615

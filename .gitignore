@@ -1,0 +1,23 @@
+# Raw GitHub API evidence: ~78 MB of verbatim responses.
+# Not needed to rebuild the dashboard; regenerate with `python run.py --refresh`.
+# sample_manifest.json is the exception: dashboard.py reads the date window from it.
+raw/*
+!raw/_meta/
+raw/_meta/*
+!raw/_meta/sample_manifest.json
+raw_archive/
+
+# Internal commentary, deliberately kept out of the published dashboard.
+# One of GitHub Pages' built-in source options publishes the /docs folder
+# verbatim, so anything left here can end up on the public site by accident.
+# Both are reproducible: `python internal_notes.py` rebuilds internal-notes.md.
+docs/internal-notes.md
+docs/recon.md
+
+# Build output assembled by the workflow.
+_site/
+
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
